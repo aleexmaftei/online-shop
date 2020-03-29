@@ -1,4 +1,7 @@
 # Online Shop Project
+```
+Work still in progress...
+```
 
 ## com.company 
 Contains the main function that initiate the project.
