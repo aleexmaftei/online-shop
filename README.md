@@ -1,4 +1,4 @@
-# online-shop
+# Online Shop Project
 
 ## com.company 
 Contains the main function that initiate the project.
