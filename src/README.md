@@ -4,11 +4,11 @@ Contains the main function that initiate the project.
 ## domain.products
 Contains the service class (ManageProducts) and POJOs (Plain Old Java Objects).
 
-##exceptions
+## exceptions
 Contains exception class.
 
-#persistence
+## persistence
 Contains the repositories for the objects.
 
-#service
+## service
 Contains the class that manages the repositories for the objects.
