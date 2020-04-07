@@ -1,6 +1,6 @@
 package com.company;
 
-import products.ManageProducts;
+import service.ManageRepositories;
 
 import java.util.Scanner;
 
@@ -8,7 +8,7 @@ public class Main {
 
     public static void main(String[] args)
     {
-        ManageProducts products = new ManageProducts();
+        ManageRepositories products = new ManageRepositories();
         Scanner sc = new Scanner(System.in);
         Integer option;
         Boolean condition = true;
@@ -29,7 +29,7 @@ public class Main {
                     System.out.println("Programul s-a incheiat!");
                     break;
                 case 1:
-                    products.addMultiple();
+                    products.addProducts();
                     ok = true;
                     System.out.println("Produsele au fost adaugate!");
                     break;
@@ -39,7 +39,7 @@ public class Main {
                         System.out.println("Adaugati mai intai produse!");
                         break;
                     }
-                    products.manageProducts();
+                    products.printProducts();
                     break;
             }
         }
