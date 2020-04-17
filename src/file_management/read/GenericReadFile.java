@@ -6,5 +6,5 @@ import permits.Administrator;
 import java.util.List;
 
 public interface GenericReadFile<T> {
-    List<List<String>> read(Administrator admin, ReadFile readFile) throws NotAdministratorException;
+    List<List<String>> read(Administrator admin, ReadFile readFile, T type) throws NotAdministratorException;
 }

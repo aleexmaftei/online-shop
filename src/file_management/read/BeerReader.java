@@ -9,10 +9,10 @@ import java.util.List;
 
 public final class BeerReader implements GenericReadFile<Beer> {
     @Override
-    public List<List<String>> read(Administrator admin, ReadFile readFile) throws NotAdministratorException {
+    public List<List<String>> read(Administrator admin, ReadFile readFile, Beer type) throws NotAdministratorException {
         if (admin.getActionType() != ActionType.ADMIN_ACTION)
             throw new NotAdministratorException("Not an administrator! Can not READ files!");
 
-        return readFile.read("src/files/database/alcohol/beerCSV", admin);
+        return readFile.read(type.getPath(), admin);
     }
 }
