@@ -11,6 +11,4 @@ public final class Soda extends NonAlcoholType {
     public void setType() {
         type = "Soda";
     }
-
-
 }

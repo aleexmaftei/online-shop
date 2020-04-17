@@ -28,7 +28,9 @@ public abstract class ConsoleType extends ProductLabel {
         this.consoleName = consoleName;
     }
 
-    public String getProductionYear() { return this.productionYear; }
+    public String getProductionYear() {
+        return this.productionYear;
+    }
 
     public void printProduct() {
         System.out.println("Product type: " + this.getProductType());
