@@ -6,9 +6,17 @@ public final class Soda extends NonAlcoholType {
         this.setType();
     }
 
+    public Soda() {
+        super();
+    }
+
     /* abstract function implementation from NonAlcoholType class */
     @Override
     public void setType() {
         type = "Soda";
+    }
+
+    public String getPath() {
+        return "src/files/database/non_alcohol/sodaCSV";
     }
 }

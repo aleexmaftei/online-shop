@@ -16,6 +16,10 @@ public abstract class NonAlcoholType extends ProductLabel implements Comparable<
         super(price, producer, originCountry, ingredients, productType);
     }
 
+    public NonAlcoholType() {
+        super();
+    }
+
     // set, get for type
     public abstract void setType();
 

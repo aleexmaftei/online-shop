@@ -1,41 +1,71 @@
 package persistence.alcohol_repository;
 
+
 import domain.products.alcohol.Vodka;
 import exceptions.InvalidDataException;
 import exceptions.NotAdministratorException;
 import file_management.read.ReadFile;
+import file_management.read.alcohol_reader.VodkaReader;
 import permits.ActionType;
 import permits.Administrator;
 import persistence.GenericRepository;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Scanner;
 
 public final class VodkaRepository implements GenericRepository<Vodka> {
 
     private List<Vodka> vodkas = new LinkedList<>();
 
     /* ----- Administrator privilege actions ----- */
+//    public void readFromCSV(Administrator admin, ReadFile readFile) throws NotAdministratorException {
+//        if (admin.getActionType() != ActionType.ADMIN_ACTION)
+//            throw new NotAdministratorException("Not an administrator! Can not add from CSV file!");
+//
+//        try (Scanner scanner = new Scanner(new File(getPathFileCSV()))) {
+//            while (scanner.hasNextLine()) {
+//                List<String> productFromOneLine;
+//                productFromOneLine = readFile.getLine(scanner.nextLine(), admin);
+//
+//                /* TO DO... de verificat ca sa fie fisierul in formatul corect cu toti parametrii introdusi */
+//                Vodka oneVodka = new Vodka(Integer.parseInt(productFromOneLine.get(0)), Double.parseDouble(productFromOneLine.get(1)), productFromOneLine.get(2), productFromOneLine.get(3), productFromOneLine.get(4));
+//                add(oneVodka, admin);
+//            }
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
     public void readFromCSV(Administrator admin, ReadFile readFile) throws NotAdministratorException {
         if (admin.getActionType() != ActionType.ADMIN_ACTION)
             throw new NotAdministratorException("Not an administrator! Can not add from CSV file!");
 
-        try (Scanner scanner = new Scanner(new File(getPathFileCSV()))) {
-            while (scanner.hasNextLine()) {
-                List<String> productFromOneLine;
-                productFromOneLine = readFile.getLine(scanner.nextLine(), admin);
+        VodkaReader vodkaReader = new VodkaReader();
+        Vodka oneVodkaType = new Vodka();
+        List<List<String>> records = vodkaReader.read(admin, readFile, oneVodkaType);
 
-                /* TO DO... de verificat ca sa fie fisierul in formatul corect cu toti parametrii introdusi */
-                Vodka oneVodka = new Vodka(Integer.parseInt(productFromOneLine.get(0)), Double.parseDouble(productFromOneLine.get(1)), productFromOneLine.get(2), productFromOneLine.get(3), productFromOneLine.get(4));
-                add(oneVodka, admin);
+        for (List<String> line : records) {
+            int param1 = 0;
+            double param2 = 0;
+            String param3 = null, param4 = null, param5 = null;
+            int k = 1;
+            for (String row : line) {
+                if (k == 1) {
+                    param1 = Integer.parseInt(row);
+                } else if (k == 2) {
+                    param2 = Double.parseDouble(row);
+                } else if (k == 3) {
+                    param3 = row;
+                } else if (k == 4) {
+                    param4 = row;
+                } else param5 = row;
+                k++;
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            Vodka oneVodka = new Vodka(param1, param2, param3, param4, param5);
+            add(oneVodka, admin);
         }
     }
+
 
     @Override
     public void add(Vodka entity, Administrator admin) throws NotAdministratorException {
@@ -66,9 +96,5 @@ public final class VodkaRepository implements GenericRepository<Vodka> {
     public void printAllRepository() {
         for (Vodka vodka : this.vodkas)
             vodka.printProduct();
-    }
-
-    static public String getPathFileCSV() {
-        return "src/files/database/alcohol/vodkaCSV";
     }
 }

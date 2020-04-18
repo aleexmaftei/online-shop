@@ -6,10 +6,17 @@ public final class Water extends NonAlcoholType {
         this.setType();
     }
 
+    public Water() {
+        super();
+    }
+
     /* abstract function implementation from NonAlcoholType class */
     @Override
     public void setType() {
         type = "Water";
     }
 
+    public String getPath() {
+        return "src/files/database/non_alcohol/waterCSV";
+    }
 }

@@ -20,6 +20,9 @@ public abstract class ConsoleType extends ProductLabel {
         this.setConsoleName(consoleName);
     }
 
+    public ConsoleType(){
+        super();
+    }
     private void setProductionYear(String productionYear) {
         this.productionYear = productionYear;
     }

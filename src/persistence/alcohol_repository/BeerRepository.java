@@ -3,8 +3,8 @@ package persistence.alcohol_repository;
 import domain.products.alcohol.Beer;
 import exceptions.InvalidDataException;
 import exceptions.NotAdministratorException;
-import file_management.read.BeerReader;
 import file_management.read.ReadFile;
+import file_management.read.alcohol_reader.BeerReader;
 import permits.ActionType;
 import permits.Administrator;
 import persistence.GenericRepository;
@@ -40,7 +40,8 @@ public final class BeerRepository implements GenericRepository<Beer> {
             throw new NotAdministratorException("Not an administrator! Can not add from CSV file!");
 
         BeerReader beerReader = new BeerReader();
-        List<List<String>> records = beerReader.read(admin, readFile);
+        Beer oneBeerType = new Beer();
+        List<List<String>> records = beerReader.read(admin, readFile, oneBeerType);
 
         for (List<String> line : records) {
             int param1 = 0;

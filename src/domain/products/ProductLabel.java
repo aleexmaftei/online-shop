@@ -18,6 +18,9 @@ public abstract class ProductLabel {
         this.productType = productType;
     }
 
+    public ProductLabel() {
+    }
+
     /* set, get for price */
     public void setPrice(Double price) {
         this.price = price;

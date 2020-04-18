@@ -17,6 +17,10 @@ public abstract class AlcoholType extends ProductLabel {
         this.alcoholPercentage = alcoholPercentage;
     }
 
+    public AlcoholType() {
+        super();
+    }
+
     // set, get for alcoholPercentage
     public Integer getAlcoholPercentage() {
         return alcoholPercentage;

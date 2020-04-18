@@ -4,15 +4,13 @@ import domain.products.gaming_consoles.Nintendo;
 import exceptions.InvalidDataException;
 import exceptions.NotAdministratorException;
 import file_management.read.ReadFile;
+import file_management.read.gaming_consoles_reader.NintendoReader;
 import permits.ActionType;
 import permits.Administrator;
 import persistence.GenericRepository;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Scanner;
 import java.util.Set;
 
 public final class NintendoRepository implements GenericRepository<Nintendo> {
@@ -20,21 +18,48 @@ public final class NintendoRepository implements GenericRepository<Nintendo> {
     private Set<Nintendo> nintendos = new HashSet<>();
 
     /* ----- Administrator privilege actions ----- */
+//    public void readFromCSV(Administrator admin, ReadFile readFile) throws NotAdministratorException {
+//        if (admin.getActionType() != ActionType.ADMIN_ACTION)
+//            throw new NotAdministratorException("Not an administrator! Can not add from CSV file!");
+//
+//        try (Scanner scanner = new Scanner(new File(getPathFileCSV()))) {
+//            while (scanner.hasNextLine()) {
+//                List<String> productFromOneLine;
+//                productFromOneLine = readFile.getLine(scanner.nextLine(), admin);
+//
+//                /* TO DO... de verificat ca sa fie fisierul in formatul corect cu toti parametrii introdusi */
+//                Nintendo oneNintendo = new Nintendo(Double.parseDouble(productFromOneLine.get(0)), productFromOneLine.get(1), productFromOneLine.get(2), productFromOneLine.get(3));
+//                add(oneNintendo, admin);
+//            }
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
     public void readFromCSV(Administrator admin, ReadFile readFile) throws NotAdministratorException {
         if (admin.getActionType() != ActionType.ADMIN_ACTION)
             throw new NotAdministratorException("Not an administrator! Can not add from CSV file!");
 
-        try (Scanner scanner = new Scanner(new File(getPathFileCSV()))) {
-            while (scanner.hasNextLine()) {
-                List<String> productFromOneLine;
-                productFromOneLine = readFile.getLine(scanner.nextLine(), admin);
+        NintendoReader nintendoReader = new NintendoReader();
+        Nintendo oneNintendoType = new Nintendo();
+        List<List<String>> records = nintendoReader.read(admin, readFile, oneNintendoType);
 
-                /* TO DO... de verificat ca sa fie fisierul in formatul corect cu toti parametrii introdusi */
-                Nintendo oneNintendo = new Nintendo(Double.parseDouble(productFromOneLine.get(0)), productFromOneLine.get(1), productFromOneLine.get(2), productFromOneLine.get(3));
-                add(oneNintendo, admin);
+        for (List<String> line : records) {
+            double param1 = 0;
+            String param2 = null, param3 = null, param4 = null;
+            int k = 1;
+            for (String row : line) {
+                if (k == 1) {
+                    param1 = Double.parseDouble(row);
+                } else if (k == 2) {
+                    param2 = row;
+                } else if (k == 3) {
+                    param3 = row;
+                } else param4 = row;
+                k++;
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            Nintendo oneNintendo = new Nintendo(param1, param2, param3, param4);
+            add(oneNintendo, admin);
         }
     }
 
@@ -67,9 +92,5 @@ public final class NintendoRepository implements GenericRepository<Nintendo> {
     public void printAllRepository() {
         for (Nintendo nintendo : this.nintendos)
             nintendo.printProduct();
-    }
-
-    public String getPathFileCSV() {
-        return "src/files/database/gaming_consoles/nintendoCSV";
     }
 }
