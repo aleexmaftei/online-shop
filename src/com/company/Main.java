@@ -16,6 +16,9 @@ public class Main {
         ReadFile fileReader = ReadFile.getReadFileInstance(); // singleton file reader
         WriteFile fileWriter = WriteFile.getWriteFileInstance(); // singleton file writer
 
+        products.addProducts(admin, fileReader);
+        System.out.println("Produsele au fost adaugate cu succes la deschiderea programului!");
+
         Scanner sc = new Scanner(System.in);
         int option;
         boolean condition = true;
@@ -24,7 +27,8 @@ public class Main {
             System.out.println("\nPentru a iesi, apasati orice nu este din intervalul dat!");
             System.out.println("Alegeti o optiune:");
             System.out.println("1) Adaugati produse;");
-            System.out.println("2) Afisati produsele.");
+            System.out.println("2) Afisati produsele;");
+            System.out.println("3) Scrieti produsele in fisiere.");
 
             option = sc.nextInt();
 
@@ -44,6 +48,13 @@ public class Main {
                         break;
                     }
                     products.printProducts();
+                    break;
+                case 3:
+                    if (!ok) {
+                        System.out.println("Adaugati mai intai produse!");
+                        break;
+                    }
+                    products.updateFilesCSV(admin, fileWriter);
                     break;
             }
         }

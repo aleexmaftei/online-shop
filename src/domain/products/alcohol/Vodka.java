@@ -20,4 +20,8 @@ public final class Vodka extends AlcoholType {
     public String getPath() {
         return "src/files/database/alcohol/vodkaCSV";
     }
+
+    public static String getWritePath() {
+        return "src/files/write_database/alcohol/vodkaCSV";
+    }
 }

@@ -19,4 +19,8 @@ public final class Soda extends NonAlcoholType {
     public String getPath() {
         return "src/files/database/non_alcohol/sodaCSV";
     }
+
+    public static String getWritePath() {
+        return "src/files/write_database/non_alcohol/sodaCSV";
+    }
 }

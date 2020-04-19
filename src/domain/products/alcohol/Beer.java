@@ -20,4 +20,8 @@ public final class Beer extends AlcoholType {
     public String getPath() {
         return "src/files/database/alcohol/beerCSV";
     }
+
+    public static String getWritePath(){
+        return "src/files/write_database/alcohol/beerCSV";
+    }
 }

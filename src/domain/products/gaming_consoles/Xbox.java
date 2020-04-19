@@ -12,4 +12,8 @@ public final class Xbox extends ConsoleType {
     public String getPath() {
         return "src/files/database/gaming_consoles/xboxCSV";
     }
+
+    public static String getWritePath() {
+        return "src/files/write_database/gaming_consoles/xboxCSV";
+    }
 }

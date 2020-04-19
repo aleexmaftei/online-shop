@@ -5,10 +5,13 @@ import exceptions.InvalidDataException;
 import exceptions.NotAdministratorException;
 import file_management.read.ReadFile;
 import file_management.read.alcohol_reader.BeerReader;
+import file_management.write.WriteFile;
+import file_management.write.alcohol_writer.BeerWriter;
 import permits.ActionType;
 import permits.Administrator;
 import persistence.GenericRepository;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -35,6 +38,7 @@ public final class BeerRepository implements GenericRepository<Beer> {
 //        }
 //    }
 
+    /* -------- CSV READER -------- */
     public void readFromCSV(Administrator admin, ReadFile readFile) throws NotAdministratorException {
         if (admin.getActionType() != ActionType.ADMIN_ACTION)
             throw new NotAdministratorException("Not an administrator! Can not add from CSV file!");
@@ -63,24 +67,40 @@ public final class BeerRepository implements GenericRepository<Beer> {
             Beer oneBeer = new Beer(param1, param2, param3, param4, param5);
             add(oneBeer, admin);
         }
+
+        WriteFile.writeStampCSV("READ ALL BEERS FILES FROM CSV", admin);
     }
 
+    /* -------- CSV WRITER -------- */
+    public void writeToCSV(Administrator admin, WriteFile writeFile) throws NotAdministratorException {
+        if (admin.getActionType() != ActionType.ADMIN_ACTION)
+            throw new NotAdministratorException("Not an administrator! Can not add entity!");
+        BeerWriter beerWriter = new BeerWriter();
+        beerWriter.write(beers, admin, writeFile);
+    }
+
+    /* -------- TO ADD ONE -------- */
     @Override
     public void add(Beer entity, Administrator admin) throws NotAdministratorException {
         if (admin.getActionType() != ActionType.ADMIN_ACTION)
             throw new NotAdministratorException("Not an administrator! Can not add entity!");
         Beer oneBeer = new Beer(entity.getAlcoholPercentage(), entity.getPrice(), entity.getProducer(), entity.getOriginCountry(), entity.getIngredients());
         this.beers.add(oneBeer);
+
+        WriteFile.writeStampCSV("added BEER", admin);
     }
 
+    /* -------- TO DELETE ALL -------- */
     @Override
     public void delete(Administrator admin) throws NotAdministratorException {
         if (admin.getActionType() != ActionType.ADMIN_ACTION)
             throw new NotAdministratorException("Not an administrator! Can not delete all entities!");
         beers.clear();
 
+        WriteFile.writeStampCSV("deleted all BEERS", admin);
     }
 
+    /* -------- TO DELETE WITH A GIVEN INDEX -------- */
     @Override
     public void delete(int index, Administrator admin) throws InvalidDataException, NotAdministratorException {
         if (admin.getActionType() != ActionType.ADMIN_ACTION)
@@ -88,6 +108,8 @@ public final class BeerRepository implements GenericRepository<Beer> {
         if (index < 0 || index > beers.size())
             throw new InvalidDataException("Invalid index!");
         beers.remove(index);
+
+        WriteFile.writeStampCSV("removed index: " + index + " from BEER", admin);
     }
     /* ----- END of Administrator privilege actions ----- */
 
@@ -95,9 +117,5 @@ public final class BeerRepository implements GenericRepository<Beer> {
     public void printAllRepository() {
         for (Beer beer : this.beers)
             beer.printProduct();
-    }
-
-    private String getPathFileCSV() {
-        return "src/files/database/alcohol/beerCSV";
     }
 }

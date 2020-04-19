@@ -5,10 +5,13 @@ import exceptions.InvalidDataException;
 import exceptions.NotAdministratorException;
 import file_management.read.ReadFile;
 import file_management.read.non_alcohol_reader.SodaReader;
+import file_management.write.WriteFile;
+import file_management.write.non_alcohol_writer.SodaWriter;
 import permits.ActionType;
 import permits.Administrator;
 import persistence.GenericRepository;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -35,6 +38,7 @@ public final class SodaRepository implements GenericRepository<Soda> {
 //        }
 //    }
 
+    /* -------- CSV READER -------- */
     public void readFromCSV(Administrator admin, ReadFile readFile) throws NotAdministratorException {
         if (admin.getActionType() != ActionType.ADMIN_ACTION)
             throw new NotAdministratorException("Not an administrator! Can not add from CSV file!");
@@ -63,23 +67,39 @@ public final class SodaRepository implements GenericRepository<Soda> {
             add(oneSoda, admin);
         }
 
+        WriteFile.writeStampCSV("READ ALL SODAS FILES FROM CSV", admin);
     }
 
+    /* -------- CSV WRITER -------- */
+    public void writeToCSV(Administrator admin, WriteFile writeFile) throws NotAdministratorException {
+        if (admin.getActionType() != ActionType.ADMIN_ACTION)
+            throw new NotAdministratorException("Not an administrator! Can not add entity!");
+        SodaWriter sodaWriter = new SodaWriter();
+        sodaWriter.write(sodas, admin, writeFile);
+    }
+
+    /* -------- TO ADD ONE -------- */
     @Override
     public void add(Soda entity, Administrator admin) throws NotAdministratorException {
         if (admin.getActionType() != ActionType.ADMIN_ACTION)
             throw new NotAdministratorException("Not an administrator! Can not add entity!");
         Soda oneSoda = new Soda(entity.getPrice(), entity.getProducer(), entity.getOriginCountry(), entity.getIngredients());
         sodas.add(oneSoda);
+
+        WriteFile.writeStampCSV("added SODA", admin);
     }
 
+    /* -------- TO DELETE ALL -------- */
     @Override
     public void delete(Administrator admin) throws NotAdministratorException {
         if (admin.getActionType() != ActionType.ADMIN_ACTION)
             throw new NotAdministratorException("Not an administrator! Can not delete all entities!");
         sodas.clear();
+
+        WriteFile.writeStampCSV("deleted all SODAS", admin);
     }
 
+    /* -------- TO DELETE WITH A GIVEN INDEX -------- */
     @Override
     public void delete(int index, Administrator admin) throws InvalidDataException, NotAdministratorException {
         if (admin.getActionType() != ActionType.ADMIN_ACTION)
@@ -87,6 +107,8 @@ public final class SodaRepository implements GenericRepository<Soda> {
         if (index < 0 || index > sodas.size())
             throw new InvalidDataException("Indexul este invalid!");
         sodas.remove(index);
+
+        WriteFile.writeStampCSV("deleted index: " + index + " from SODAS", admin);
     }
     /* ----- END of Administrator privilege actions ----- */
 

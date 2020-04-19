@@ -12,4 +12,8 @@ public final class Playstation extends ConsoleType {
     public String getPath() {
         return "src/files/database/gaming_consoles/playstationCSV";
     }
+
+    public static String getWritePath() {
+        return "src/files/write_database/gaming_consoles/playstationCSV";
+    }
 }

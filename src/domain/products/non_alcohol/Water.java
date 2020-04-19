@@ -19,4 +19,8 @@ public final class Water extends NonAlcoholType {
     public String getPath() {
         return "src/files/database/non_alcohol/waterCSV";
     }
+
+    public static String getWritePath() {
+        return "src/files/write_database/non_alcohol/waterCSV";
+    }
 }

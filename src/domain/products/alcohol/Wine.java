@@ -20,4 +20,8 @@ public final class Wine extends AlcoholType {
     public String getPath() {
         return "src/files/database/alcohol/wineCSV";
     }
+
+    public static String getWritePath() {
+        return "src/files/write_database/alcohol/wineCSV";
+    }
 }
