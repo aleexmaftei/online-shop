@@ -21,7 +21,7 @@ public final class BeerWriter implements GenericWriteFile<Beer> {
         for (Beer beer : records) {
             whatToWrite.add(beer.getAlcoholPercentage().toString() + ",");
             whatToWrite.add(beer.getPrice().toString() + ",");
-            whatToWrite.add(beer.getProducer() + ",");
+            whatToWrite.add(beer.getName() + ",");
             whatToWrite.add(beer.getOriginCountry() + ",");
             whatToWrite.add(beer.getIngredients() + ",");
             whatToWrite.add("\n");

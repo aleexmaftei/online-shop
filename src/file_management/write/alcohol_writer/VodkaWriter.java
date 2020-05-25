@@ -21,7 +21,7 @@ public final class VodkaWriter implements GenericWriteFile<Vodka> {
         for (Vodka vodka : records) {
             whatToWrite.add(vodka.getAlcoholPercentage().toString() + ",");
             whatToWrite.add(vodka.getPrice().toString() + ",");
-            whatToWrite.add(vodka.getProducer() + ",");
+            whatToWrite.add(vodka.getName() + ",");
             whatToWrite.add(vodka.getOriginCountry() + ",");
             whatToWrite.add(vodka.getIngredients() + ",");
             whatToWrite.add("\n");

@@ -20,7 +20,7 @@ public final class NintendoWriter implements GenericWriteFile<Nintendo> {
         List<String> whatToWrite = new LinkedList<>();
         for (Nintendo nintendo : records) {
             whatToWrite.add(nintendo.getPrice().toString() + ",");
-            whatToWrite.add(nintendo.getProducer() + ",");
+            whatToWrite.add(nintendo.getName() + ",");
             whatToWrite.add(nintendo.getOriginCountry() + ",");
             whatToWrite.add(nintendo.getProductionYear() + ",");
             whatToWrite.add("\n");

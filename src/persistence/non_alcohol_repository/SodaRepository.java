@@ -11,7 +11,6 @@ import permits.ActionType;
 import permits.Administrator;
 import persistence.GenericRepository;
 
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,24 +19,6 @@ public final class SodaRepository implements GenericRepository<Soda> {
     private List<Soda> sodas = new LinkedList<>();
 
     /* ----- Administrator privilege actions ----- */
-//    public void readFromCSV(Administrator admin, ReadFile readFile) throws NotAdministratorException {
-//        if (admin.getActionType() != ActionType.ADMIN_ACTION)
-//            throw new NotAdministratorException("Not an administrator! Can not add from CSV file!");
-//
-//        try (Scanner scanner = new Scanner(new File("src/files/database/non_alcohol/sodaCSV"))) {
-//            while (scanner.hasNextLine()) {
-//                List<String> productFromOneLine;
-//                productFromOneLine = readFile.getLine(scanner.nextLine(), admin);
-//
-//                /* TO DO... de verificat ca sa fie fisierul in formatul corect cu toti parametrii introdusi */
-//                Soda oneSoda = new Soda(Double.parseDouble(productFromOneLine.get(0)), productFromOneLine.get(1), productFromOneLine.get(2), productFromOneLine.get(3));
-//                add(oneSoda, admin);
-//            }
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
     /* -------- CSV READER -------- */
     public void readFromCSV(Administrator admin, ReadFile readFile) throws NotAdministratorException {
         if (admin.getActionType() != ActionType.ADMIN_ACTION)
@@ -83,7 +64,7 @@ public final class SodaRepository implements GenericRepository<Soda> {
     public void add(Soda entity, Administrator admin) throws NotAdministratorException {
         if (admin.getActionType() != ActionType.ADMIN_ACTION)
             throw new NotAdministratorException("Not an administrator! Can not add entity!");
-        Soda oneSoda = new Soda(entity.getPrice(), entity.getProducer(), entity.getOriginCountry(), entity.getIngredients());
+        Soda oneSoda = new Soda(entity.getPrice(), entity.getName(), entity.getOriginCountry(), entity.getIngredients());
         sodas.add(oneSoda);
 
         WriteFile.writeStampCSV("added SODA", admin);

@@ -7,13 +7,13 @@ public abstract class AlcoholType extends ProductLabel {
     protected String alcoholType;
 
     /*  @param price - price of the object
-        @param producer - producer of the object
+        @param name - name of the object
         @param originCountry - the country in which this object was produced
         @param ingredients - ingredients of the object
         @param productType - what kind of object it is (alcohol, non-alcohol etc)
     */
-    public AlcoholType(Integer alcoholPercentage, Double price, String producer, String originCountry, String ingredients, String productType) {
-        super(price, producer, originCountry, ingredients, productType);
+    public AlcoholType(Integer alcoholPercentage, Double price, String name, String originCountry, String ingredients, String productType) {
+        super(price, name, originCountry, ingredients, productType);
         this.alcoholPercentage = alcoholPercentage;
     }
 
@@ -41,7 +41,7 @@ public abstract class AlcoholType extends ProductLabel {
     public void printProduct() {
         System.out.println("Product type: " + this.getProductType());
         System.out.println("Price: " + this.getPrice());
-        System.out.println("Producer: " + this.getProducer());
+        System.out.println("Producer: " + this.getName());
         System.out.println("Origin country: " + this.getOriginCountry());
         System.out.println("Alcohol type: " + this.getAlcoholType());
         System.out.println("Alcohol Percentage: " + this.getAlcoholPercentage());

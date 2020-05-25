@@ -1,8 +1,8 @@
 package domain.products.non_alcohol;
 
 public final class Water extends NonAlcoholType {
-    public Water(Double price, String producer, String originCountry) {
-        super(price, producer, originCountry, null, "Non-alcohol");
+    public Water(Double price, String name, String originCountry) {
+        super(price, name, originCountry, null, "Non-alcohol");
         this.setType();
     }
 
@@ -22,5 +22,16 @@ public final class Water extends NonAlcoholType {
 
     public static String getWritePath() {
         return "src/files/write_database/non_alcohol/waterCSV";
+    }
+
+    @Override
+    public String toString() {
+        return "Water{" +
+                "price='" + getPrice() + '\'' +
+                ", name='" + getName() + '\'' +
+                ", origin country=" + getOriginCountry() +
+                ", product type=" + getProductType() +
+                ", id=" + getId() +
+                '}';
     }
 }

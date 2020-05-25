@@ -1,8 +1,8 @@
 package domain.products.non_alcohol;
 
 public final class Soda extends NonAlcoholType {
-    public Soda(Double price, String producer, String originCountry, String ingredients) {
-        super(price, producer, originCountry, ingredients, "Non-alcohol");
+    public Soda(Double price, String name, String originCountry, String ingredients) {
+        super(price, name, originCountry, ingredients, "Non-alcohol");
         this.setType();
     }
 

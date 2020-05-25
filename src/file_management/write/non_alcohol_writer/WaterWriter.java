@@ -20,7 +20,7 @@ public final class WaterWriter implements GenericWriteFile<Water> {
         List<String> whatToWrite = new LinkedList<>();
         for (Water water : records) {
             whatToWrite.add(water.getPrice().toString() + ",");
-            whatToWrite.add(water.getProducer() + ",");
+            whatToWrite.add(water.getName() + ",");
             whatToWrite.add(water.getOriginCountry() + ",");
             whatToWrite.add("\n");
         }

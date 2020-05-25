@@ -21,7 +21,7 @@ public final class WineWriter implements GenericWriteFile<Wine> {
         for (Wine wine : records) {
             whatToWrite.add(wine.getAlcoholPercentage().toString() + ",");
             whatToWrite.add(wine.getPrice().toString() + ",");
-            whatToWrite.add(wine.getProducer() + ",");
+            whatToWrite.add(wine.getName() + ",");
             whatToWrite.add(wine.getOriginCountry() + ",");
             whatToWrite.add(wine.getIngredients() + ",");
             whatToWrite.add("\n");

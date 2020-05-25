@@ -23,7 +23,7 @@ public final class ReadFile {
         return READ_INSTANCE;
     }
 
-    public List<String> getLine(String line, Administrator admin) throws NotAdministratorException {
+    private List<String> getLine(String line, Administrator admin) throws NotAdministratorException {
         if (admin.getActionType() != ActionType.ADMIN_ACTION)
             throw new NotAdministratorException("Not an administrator! Can not READ files!");
 

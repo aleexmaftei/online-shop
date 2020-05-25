@@ -12,7 +12,6 @@ import permits.ActionType;
 import permits.Administrator;
 import persistence.GenericRepository;
 
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,24 +20,6 @@ public final class VodkaRepository implements GenericRepository<Vodka> {
     private List<Vodka> vodkas = new LinkedList<>();
 
     /* ----- Administrator privilege actions ----- */
-//    public void readFromCSV(Administrator admin, ReadFile readFile) throws NotAdministratorException {
-//        if (admin.getActionType() != ActionType.ADMIN_ACTION)
-//            throw new NotAdministratorException("Not an administrator! Can not add from CSV file!");
-//
-//        try (Scanner scanner = new Scanner(new File(getPathFileCSV()))) {
-//            while (scanner.hasNextLine()) {
-//                List<String> productFromOneLine;
-//                productFromOneLine = readFile.getLine(scanner.nextLine(), admin);
-//
-//                /* TO DO... de verificat ca sa fie fisierul in formatul corect cu toti parametrii introdusi */
-//                Vodka oneVodka = new Vodka(Integer.parseInt(productFromOneLine.get(0)), Double.parseDouble(productFromOneLine.get(1)), productFromOneLine.get(2), productFromOneLine.get(3), productFromOneLine.get(4));
-//                add(oneVodka, admin);
-//            }
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
     /* -------- CSV READER -------- */
     public void readFromCSV(Administrator admin, ReadFile readFile) throws NotAdministratorException {
         if (admin.getActionType() != ActionType.ADMIN_ACTION)
@@ -85,7 +66,7 @@ public final class VodkaRepository implements GenericRepository<Vodka> {
     public void add(Vodka entity, Administrator admin) throws NotAdministratorException {
         if (admin.getActionType() != ActionType.ADMIN_ACTION)
             throw new NotAdministratorException("Not an administrator! Can not add entity!");
-        Vodka oneVodka = new Vodka(entity.getAlcoholPercentage(), entity.getPrice(), entity.getProducer(), entity.getOriginCountry(), entity.getIngredients());
+        Vodka oneVodka = new Vodka(entity.getAlcoholPercentage(), entity.getPrice(), entity.getName(), entity.getOriginCountry(), entity.getIngredients());
         this.vodkas.add(oneVodka);
 
         WriteFile.writeStampCSV("added VODKA", admin);

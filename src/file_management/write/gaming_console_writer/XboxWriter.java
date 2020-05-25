@@ -20,7 +20,7 @@ public final class XboxWriter implements GenericWriteFile<Xbox> {
         List<String> whatToWrite = new LinkedList<>();
         for (Xbox xbox : records) {
             whatToWrite.add(xbox.getPrice().toString() + ",");
-            whatToWrite.add(xbox.getProducer() + ",");
+            whatToWrite.add(xbox.getName() + ",");
             whatToWrite.add(xbox.getOriginCountry() + ",");
             whatToWrite.add(xbox.getProductionYear() + ",");
             whatToWrite.add("\n");

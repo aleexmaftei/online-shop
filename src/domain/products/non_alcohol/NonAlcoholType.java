@@ -12,8 +12,8 @@ public abstract class NonAlcoholType extends ProductLabel implements Comparable<
      *  @param ingredients - ingredients of the object
      *  @param productType - what kind of object it is (alcohol, non-alcohol etc)
      */
-    public NonAlcoholType(Double price, String producer, String originCountry, String ingredients, String productType) {
-        super(price, producer, originCountry, ingredients, productType);
+    public NonAlcoholType(Double price, String name, String originCountry, String ingredients, String productType) {
+        super(price, name, originCountry, ingredients, productType);
     }
 
     public NonAlcoholType() {
@@ -30,7 +30,7 @@ public abstract class NonAlcoholType extends ProductLabel implements Comparable<
     public void printProduct() {
         System.out.println("Product type: " + this.getProductType());
         System.out.println("Price: " + this.getPrice());
-        System.out.println("Producer: " + this.getProducer());
+        System.out.println("Producer: " + this.getName());
         System.out.println("Origin country: " + this.getOriginCountry());
         System.out.println("Drink type: " + this.getType());
         if (this.getIngredients() != null)

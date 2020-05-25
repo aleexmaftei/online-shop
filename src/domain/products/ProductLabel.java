@@ -4,15 +4,15 @@ import java.util.UUID;
 
 public abstract class ProductLabel {
     private Double price;
-    private String producer;
+    private String name;
     private String originCountry;
     private String ingredients;
     private String productType;
     private String uniqueID = UUID.randomUUID().toString();
 
-    public ProductLabel(Double price, String producer, String originCountry, String ingredients, String productType) {
+    public ProductLabel(Double price, String name, String originCountry, String ingredients, String productType) {
         this.price = price;
-        this.producer = producer;
+        this.name = name;
         this.originCountry = originCountry;
         this.ingredients = ingredients;
         this.productType = productType;
@@ -31,12 +31,12 @@ public abstract class ProductLabel {
     }
 
     /* set, get for producer */
-    public void setProducer(String producer) {
-        this.producer = producer;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getProducer() {
-        return this.producer;
+    public String getName() {
+        return this.name;
     }
 
     /* set, get for originCountry */
@@ -66,9 +66,13 @@ public abstract class ProductLabel {
         return productType;
     }
 
-    /* get for id */
+    /* set, get for id */
     public String getId() {
         return uniqueID;
+    }
+
+    public void setId(String id) {
+        uniqueID = id;
     }
 
     /* for printing  domain.products in console */

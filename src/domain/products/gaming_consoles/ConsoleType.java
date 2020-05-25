@@ -14,8 +14,8 @@ public abstract class ConsoleType extends ProductLabel {
      *   @param productType - what kind of object it is (alcohol, non-alcohol etc)
      */
 
-    public ConsoleType(Double price, String producer, String originCountry, String productType, String consoleName, String productionYear) {
-        super(price, producer, originCountry, null, productType);
+    public ConsoleType(Double price, String name, String originCountry, String productType, String consoleName, String productionYear) {
+        super(price, name, originCountry, null, productType);
         this.setProductionYear(productionYear);
         this.setConsoleName(consoleName);
     }
@@ -39,7 +39,7 @@ public abstract class ConsoleType extends ProductLabel {
         System.out.println("Product type: " + this.getProductType());
         System.out.println("Console name: " + this.consoleName);
         System.out.println("Price: " + this.getPrice());
-        System.out.println("Producer: " + this.getProducer());
+        System.out.println("Producer: " + this.getName());
         System.out.println("Origin country: " + this.getOriginCountry());
         if (this.productionYear != null)
             System.out.println("Production Year: " + this.productionYear);

@@ -20,7 +20,7 @@ public final class SodaWriter implements GenericWriteFile<Soda> {
         List<String> whatToWrite = new LinkedList<>();
         for (Soda soda : records) {
             whatToWrite.add(soda.getPrice().toString() + ",");
-            whatToWrite.add(soda.getProducer() + ",");
+            whatToWrite.add(soda.getName() + ",");
             whatToWrite.add(soda.getOriginCountry() + ",");
             whatToWrite.add(soda.getIngredients());
             whatToWrite.add("\n");

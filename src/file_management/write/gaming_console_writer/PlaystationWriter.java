@@ -20,7 +20,7 @@ public final class PlaystationWriter implements GenericWriteFile<Playstation> {
         List<String> whatToWrite = new LinkedList<>();
         for (Playstation playstation : records) {
             whatToWrite.add(playstation.getPrice().toString() + ",");
-            whatToWrite.add(playstation.getProducer() + ",");
+            whatToWrite.add(playstation.getName() + ",");
             whatToWrite.add(playstation.getOriginCountry() + ",");
             whatToWrite.add(playstation.getProductionYear() + ",");
             whatToWrite.add("\n");
