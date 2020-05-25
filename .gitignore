@@ -2,12 +2,3 @@
 /.idea
 /Proiect.iml
 /out
-/persistence/alcohol_repository
-/persistence/gaming_consoles_repository
-/persistence/non_alcohol_repository
-/persistence/GenericRepository.java
-/file_management
-/service/ManageRepositories.java
-/service/TimeStampWriterService.java
-/exceptions/NotAdministratorException.java
-/permits
