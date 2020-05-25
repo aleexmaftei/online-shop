@@ -1,7 +1,7 @@
-DROP TABLE alcoholProducts;
-DROP TABLE gamingConsoleProducts;
-DROP TABLE nonAlcoholProducts;
-DROP TABLE productLabel;
+--DROP TABLE alcoholProducts;
+--DROP TABLE gamingConsoleProducts;
+--DROP TABLE nonAlcoholProducts;
+--DROP TABLE productLabel;
 
 CREATE TABLE productLabel (
 	price DOUBLE(5, 3) NOT NULL,
